@@ -1,0 +1,26 @@
+import React, { useEffect } from 'react'
+import useAuth from '../hooks/useAuth'
+import useUser from '../hooks/useUser';
+
+export default function Home() {
+    const { user } = useAuth();
+
+    const getUser = useUser()
+
+    useEffect(() => {
+        getUser()
+        
+    }, [])
+
+    return (
+        <div className='container mt-3'>
+            <h2>
+                <div className='row'>
+                    <div className="mb-12">
+                        {user?.email !== undefined ? <><h4>Ethereum balance: {(user.eth_balance/ 10**18).toFixed(2)}</h4></> : 'Please login first'}
+                    </div>
+                </div>
+            </h2>
+        </div>
+    )
+}
